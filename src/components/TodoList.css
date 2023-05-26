@@ -1,0 +1,105 @@
+button {
+  padding: 8px 12px;
+  margin-right: 5px;
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+li span {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+li button {
+  margin-left: 5px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 300px;
+  }
+}
+
+.tasks {
+  display: grid;
+  list-style-type: none;
+  gap: 1.5em;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6em;
+  font-size: var(--_size);
+  border: 0.2em solid hsl(var(--muted) / 0.8);
+  padding: 0.6em;
+  border-radius: calc(var(--_radius) * 2);
+}
+
+.task-group {
+  display: flex;
+  align-items: center;
+  --taskgroup-gap: 0.5em;
+  gap: var(--taskgroup-gap);
+}
+
+.filter-button {
+  text-align: center;
+}
+.button-f {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  max-width: fit-content;
+  place-items: center;
+  gap: 0.5em;
+  background-color: hsl(var(--accent));
+  color: white;
+  padding: 0.5em;
+  border-radius: var(--_radius);
+  box-shadow: 0.05em 0.1em 0.9em hsl(var(--accent) / 0.3),
+    0 0 0 -0.1em hsl(var(--bg)), 0 0 0 -0.2em hsl(var(--accent));
+  transition: box-shadow var(--_tspeed_fast) var(--_ttype_squish),
+    background-color var(--_tspeed_fast) var(--_ttype_squish);
+}
+
+.checkbox {
+  flex-shrink: 0;
+  border-radius: var(--_radius);
+  width: 1em;
+  height: 1em;
+  background-color: hsl(var(--muted));
+  border-radius: var(--_radius);
+  box-shadow: 0 0 0.5em hsl(var(--accent) / 0.1),
+    0 0 0 0.05em hsl(var(--accent) / 0.5), 0 0 0 -0.2em hsl(var(--accent));
+  transition: box-shadow var(--_tspeed_fast) ease-in-out;
+  background-color: 80ms ease-in-out;
+}
+
+.checkbox:focus {
+  outline: none;
+}
+
+.checkbox:is(:focus-visible, :hover) {
+  box-shadow: 0 0 0 hsl(var(--bg)), 0 0 0 0.05em hsl(var(--accent)),
+    0 0 0 0.225em hsl(var(--accent) / 0.3);
+}
+.wrapper {
+  flex: 1 1 100%;
+  position: relative;
+  display: grid;
+  gap: 0.2em;
+}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { connect } from "react-redux"
-import '../TodoList.css'
+import styles from './TodoList.css'
 import { addTodo, updateTodo, deleteTodo, setFilter, editTodo, toggleChecklist } from '../redux/action/action'
 
 
@@ -72,40 +72,46 @@ const TodoList = ({ todos, filter, addTodo, updateTodo, deleteTodo, setFilter, t
 
     return (
         <div>
-            <input type="text" value={todoText} onChange={handleInputChange} />
-            <button onClick={handleAddTodo}>Add Todo</button>
-
-            <div>
-                <button onClick={() => handleFilterChange('ALL')}>All</button>
-                <button onClick={() => handleFilterChange('ACTIVE')}>Active</button>
-                <button onClick={() => handleFilterChange('COMPLETED')}>Completed</button>
+            <h1>ADD MY TASK LIST</h1>
+            <div className="wrapper">
+                <input className="input" placeholder="Add your task" type="text" value={todoText} onChange={handleInputChange} />
+                <button className="button" onClick={handleAddTodo}>Add Todo</button>
             </div>
 
-            <ul>
+            <div className="filter-button">
+                <button className="button-f" onClick={() => handleFilterChange('ALL')}>All</button>
+                <button className="button-f" onClick={() => handleFilterChange('ACTIVE')}>Active</button>
+                <button className="button-f" onClick={() => handleFilterChange('COMPLETED')}>Completed</button>
+            </div>
+
+            <ul className='tasks'>
                 {filteredTodos().map((todo) => (
-                    <li key={todo.id} >
-                        <input type="checkbox"
-                            checked={todo.completed}
-                            onChange={() => handleToggleChecklist(todo.id)} />
-                        {editTodoId === todo.id ? (
-                            <>
-                                <input type="text" value={editTodoText} onChange={handleEditInputChange} />
-                                <button onClick={() => handleSaveEditTodo(todo.id)}>Save</button>
-                            </>
-                        ) : (
-                            <>
-                                <span
-                                    style={{
-                                        textDecoration: todo.completed ? 'line-through' : 'none',
-                                    }}
-                                    onClick={() => handleUpdateTodo(todo.id, todo.completed)}
-                                >
-                                    {todo.text}
-                                </span>
-                                <button onClick={() => handleEditTodo(todo.id, todo.text)}>Edit</button>
-                                <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
-                            </>
-                        )}
+                    <li className="task" key={todo.id} >
+                        <div className="task-group">
+                            <input className="checkbox" type="checkbox"
+                                checked={todo.completed}
+                                onChange={() => handleToggleChecklist(todo.id)} />
+                            {editTodoId === todo.id ? (
+                                <>
+                                    <input className="input" type="text" value={editTodoText} onChange={handleEditInputChange} />
+                                    <button className="button" onClick={() => handleSaveEditTodo(todo.id)}>Save</button>
+                                </>
+                            ) : (
+                                <>
+                                    <span
+                                        style={{
+                                            textDecoration: todo.completed ? 'line-through' : 'none',
+                                        }}
+                                        onClick={() => handleUpdateTodo(todo.id, todo.completed)}
+                                    >
+                                        {todo.text}
+                                    </span>
+                                    <button className="button" onClick={() => handleEditTodo(todo.id, todo.text)}>Edit</button>
+                                    <button className={`button ${styles.delete}`} onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+                                </>
+                            )}
+                        </div>
+
                     </li>
                 ))}
             </ul>
